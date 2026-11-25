@@ -17,7 +17,8 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         Path uploadPath = Paths.get(avatarDir).toAbsolutePath().normalize();
+        Path nestedPath = Paths.get("IAM_Project", avatarDir).toAbsolutePath().normalize();
         registry.addResourceHandler("/api/v1/files/avatars/**")
-                .addResourceLocations("file:" + uploadPath.toString() + "/");
+                .addResourceLocations("file:" + uploadPath.toString() + "/", "file:" + nestedPath.toString() + "/");
     }
 }
